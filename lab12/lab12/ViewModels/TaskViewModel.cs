@@ -44,7 +44,7 @@ namespace lab12.ViewModels
         public TaskViewModel()
         {
             Tasks = new ObservableCollection<Task>();
-            NewTask = new Task();
+            NewTask = new TaskModel();
 
             Save = new Command(Insertar);
             Get = new Command(Listar);
@@ -55,7 +55,7 @@ namespace lab12.ViewModels
             if (NewTask != null)
             {
                 Tasks.Add(NewTask);
-                NewTask = new Task();
+                NewTask = new TaskModel();
             }
         }
 
