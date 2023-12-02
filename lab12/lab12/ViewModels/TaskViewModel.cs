@@ -24,8 +24,8 @@ namespace lab12.ViewModels
             }
         }
 
-        private Task newTask;
-        public Task NewTask
+        private TaskModel newTask;
+        public TaskModel NewTask
         {
             get { return newTask; }
             set
