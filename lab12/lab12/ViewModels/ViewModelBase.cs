@@ -1,22 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Text;
 
 namespace lab12.ViewModels
 {
     public class ViewModelBase : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
-        protected virtual void OnPropertyChanged(
-            [CallerMemberName] string propertyName = null)
+
+        protected virtual void SetProperty<T>(ref T backingField, T value, [CallerMemberName] string propertyName = "")
         {
-            PropertyChangedEventHandler handler = PropertyChanged;
-            if (handler != null)
+            if (!EqualityComparer<T>.Default.Equals(backingField, value))
             {
-                handler(this, new PropertyChangedEventArgs(propertyName));
+                backingField = value;
+                OnPropertyChanged(propertyName);
             }
+        }
+
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

@@ -10,8 +10,11 @@
             <Label Text="Descripcion" FontSize="Title" />
             <Entry FontSize="Title" Text="{Binding Descripcion}"/>
 
-            <Button Text="Guardar" Command="{Binding Guardar}" BackgroundColor="white" />
-            <Button Text="Listar" Command="{Binding Listar}" BackgroundColor="white" />
+            <Label Text="Estado" />
+            <Switch IsToggled="{Binding Status}" />
+
+            <Button Text="Guardar" Command="{Binding Save}" BackgroundColor="PaleGreen" />
+            <Button Text="Listar" Command="{Binding Get}" BackgroundColor="PaleGreen" />
             <ListView ItemsSource="{Binding Tasks}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
@@ -19,6 +22,8 @@
                             <ViewCell.View>
                                 <StackLayout Orientation="Vertical">
                                     <Label Text="{Binding Title}"/>
+                                    <Label Text="{Binding Descripcion}" />
+                                    <Label Text="{Binding Status, StringFormat='Estado: {0}'}" />
                                 </StackLayout>
                             </ViewCell.View>
                         </ViewCell>
